@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Botones */
+  .btn { @apply inline-flex items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition; }
+  .btn-primary { @apply btn bg-uth-600 text-white hover:bg-uth-700 focus:outline-none focus:ring-2 focus:ring-uth-400; }
+  .btn-secondary { @apply btn border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700; }
+  .btn-danger { @apply btn bg-red-600 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400; }
+  .btn-icon { @apply inline-flex items-center justify-center rounded-md p-2 transition hover:bg-gray-100 dark:hover:bg-gray-800; }
+
+  /* Chips / estatus */
+  .chip { @apply inline-flex items-center rounded-md px-2 py-1 text-xs font-semibold; }
+  .chip-ok { @apply chip bg-uth-600/10 text-uth-700 dark:text-uth-300; }
+  .chip-warn { @apply chip bg-yellow-500/10 text-yellow-700 dark:text-yellow-300; }
+  .chip-bad { @apply chip bg-red-600/10 text-red-700 dark:text-red-300; }
+
+  /* Tarjeta */
+  .card { @apply bg-white dark:bg-gray-800 shadow-soft rounded-2xl p-6; }
+  .card-title { @apply font-semibold text-lg mb-3; }
+
+  /* Tabla */
+  .table { @apply min-w-full text-sm border; }
+  .th { @apply p-2 border bg-gray-100 dark:bg-gray-700 text-left font-semibold; }
+  .td { @apply p-2 border align-top; }
+
+  /* Formularios */
+  .label { @apply block text-sm mb-1; }
+  .input { @apply w-full border rounded p-2 bg-white dark:bg-gray-900; }
+  .select { @apply w-full border rounded p-2 bg-white dark:bg-gray-900; }
+  .textarea { @apply w-full border rounded p-2 bg-white dark:bg-gray-900; }
+
+  /* Focus rings con color institucional */
+  .input:focus, .select:focus, .textarea:focus {
+    @apply outline-none ring-2 ring-uth-400 border-uth-400;
+  }
+
+  /* Navbar / Sidebar helpers */
+  .nav-link { @apply inline-flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800; }
+  .aside-link { @apply block px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700; }
+  .aside-link-active { @apply block px-3 py-2 rounded-lg bg-uth-600 text-white; }
+}
+
+/* Scrollbar suave */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+.dark ::-webkit-scrollbar-thumb { background: #374151; }
+
+/* Cloak para Alpine (ocultar hasta inicializar) */
+[x-cloak] { display: none !important; }
+
+/* (Opcional) Fuente Inter si la agregas en public/fonts */
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
