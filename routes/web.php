@@ -17,6 +17,10 @@ use App\Http\Controllers\Student\{
 };
 use App\Http\Controllers\Publico\VerificacionController; // verificación pública por token
 
+// ======================
+// PÁGINAS PÚBLICAS
+// ======================
+
 // Portada (welcome presentable)
 Route::view('/', 'welcome')->name('home');
 
@@ -33,6 +37,18 @@ Route::post('/verificacion', function (Request $request) {
     return redirect()->route('verificacion.mostrar', $token);
 })->name('verificacion.redirect');
 
+/* ==========================================
+   RUTA OFFLINE (PÚBLICA, SIN AUTENTICACIÓN)
+   ==========================================
+   Muestra un mensaje cuando no hay conexión.
+   El Service Worker usará esta ruta como fallback.
+*/
+Route::view('/offline', 'offline')->name('offline');
+
+// ======================
+// DASHBOARD GENERAL
+// ======================
+
 // ‘/dashboard’ redirige al panel según rol (si no hay sesión => login)
 Route::get('/dashboard', function () {
     $u = auth()->user();
@@ -44,7 +60,9 @@ Route::get('/dashboard', function () {
     };
 })->middleware('auth')->name('dashboard');
 
-// Auth de Breeze
+// ======================
+// AUTENTICACIÓN (BREEZE)
+// ======================
 require __DIR__.'/auth.php';
 
 // ===== RUTAS DE PERFIL (Breeze) =====
@@ -54,7 +72,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// ===== ESTUDIANTE =====
+// ======================
+// ESTUDIANTE
+// ======================
 Route::middleware(['auth','role:ESTUDIANTE'])->group(function () {
     Route::get('/estudiante', [DashboardController::class, 'estudiante'])->name('dash.estudiante');
 
@@ -75,7 +95,9 @@ Route::middleware(['auth','role:ESTUDIANTE'])->group(function () {
     Route::get('/mi-estado-reinscripcion', [EstadoInlineController::class, 'yo'])->name('estudiante.estado');
 });
 
-// ===== ADMIN =====
+// ======================
+// ADMINISTRADOR
+// ======================
 Route::middleware(['auth','role:ADMIN'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('dash.admin');
 
@@ -88,7 +110,9 @@ Route::middleware(['auth','role:ADMIN'])->group(function () {
     Route::post('/admin/solicitud/{pago}/rechazar', [AdminController::class, 'rechazar'])->name('admin.rechazar');
 });
 
-// ===== CAJA =====
+// ======================
+// CAJA
+// ======================
 Route::middleware(['auth','role:CAJA'])->group(function () {
     Route::get('/caja', [CajaController::class, 'dashboard'])->name('dash.caja');
 

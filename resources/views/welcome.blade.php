@@ -4,7 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Módulo de Reinscripciones — UTH</title>
+
+  {{-- === PWA: manifest, theme-color e íconos === --}}
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0c7a1c">
+  <link rel="icon" href="/img/logo_uth_2024.png" type="image/png">
+  <link rel="apple-touch-icon" href="/img/logo_uth_2024.png">
+  {{-- =========================================== --}}
+
   @vite(['resources/css/app.css','resources/js/app.js'])
+
   <style>
     :root { --uth:#087d00; }
     .brand { color: var(--uth); }
@@ -39,10 +48,8 @@
         </div>
         <nav class="flex items-center gap-2">
           @if (Route::has('login'))
-            <!-- Cambiado a verde usando tu clase .btn-brand -->
             <a href="{{ route('login') }}" class="px-3 py-2 rounded-md btn-brand">Ingresar</a>
           @endif
-          <!-- Se quitó el botón Registrarme de la navbar -->
         </nav>
       </div>
     </header>
@@ -59,8 +66,6 @@
           <p class="mt-3 text-gray-600 dark:text-gray-300 max-w-xl">
             Valida tus datos, carga tu pago y obtén tu constancia con verificación por QR.
           </p>
-
-          <!-- Se removieron los botones duplicados (Ingresar / Registrarme) del hero -->
 
           <!-- Verificación por token -->
           <div class="mt-8 bg-white dark:bg-gray-800/70 border border-gray-200 dark:border-gray-700 rounded-xl p-4">
@@ -85,7 +90,7 @@
         <div>
           <div class="carousel shadow-2xl ring-1 ring-black/5 dark:ring-white/10">
             <div class="slides" id="slides">
-              {{-- Slide 1 (imagen local si existe, si no, degradado) --}}
+              {{-- Slide 1 --}}
               <div class="slide">
                 <img src="{{ asset('img/welcome/ENTRADAUTH.png') }}" alt="Campus UTH" onerror="this.remove()">
               </div>
@@ -147,7 +152,6 @@
       const next   = document.getElementById('next');
       const bullets= document.getElementById('bullets');
 
-      // Cuenta de slides (solo los que tienen imagen o, si no hay imágenes, deja 1 slide "vacío")
       let total = slides.children.length;
       if (total === 0) {
         const fallback = document.createElement('div');

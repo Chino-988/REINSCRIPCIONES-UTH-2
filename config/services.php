@@ -42,4 +42,15 @@ return [
         'sources' => ['API', 'CSV', 'EXTENSION'], // metadato informativo
     ],
 
+    'fcm' => [
+        'project_id'   => env('FIREBASE_PROJECT_ID'),
+        'credentials'  => env('FIREBASE_CREDENTIALS'), // ruta al JSON de credenciales
+    ],
+
+        'firebase' => [
+        'project_id'       => env('FIREBASE_PROJECT_ID', ''),
+        'credentials_file' => env('FIREBASE_CREDENTIALS', null),
+        'credentials_json' => env('FIREBASE_CREDENTIALS_JSON', null), // opcional
+    ],
+
 ];

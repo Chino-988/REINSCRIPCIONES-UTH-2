@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ config('app.name', 'Reinscripciones') }}</title>
 
+  {{-- 🔽 Elementos PWA agregados --}}
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0c7a1c">
+  <link rel="icon" href="/img/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="/img/icon-512.png">
+  {{-- 🔼 Fin de elementos PWA --}}
+
   {{-- Aplicar tema antes de cargar CSS para evitar parpadeo --}}
   <script>
   (function(){
